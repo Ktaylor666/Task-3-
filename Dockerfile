@@ -1,37 +1,12 @@
-#!/bin/bash
-
- 
-
-# Print all files in current directory (including hidden)
-
-ls -la
-
- 
-
-# Create a new file called coolScript.sh
-
-touch coolScript.sh
-
- 
-
-# Add an echo command to coolScript.sh
-
-echo "This is a cool script!" >> coolScript.sh
-
- 
-
-# Make the script executable (optional but recommended)
-
-chmod +x coolScript.sh
-
- 
-
-# Run the script
-
-./coolScript.sh
-
- 
-
-# Archive the script for post-build access
-
-archive artifacts: "coolScript.sh"
+# Use Python 3.6 or later as a base image
+FROM python:latest
+# Copy contents into image
+COPY . . 
+# Install pip dependencies from requirements
+RUN pip install -r requirements.txt
+# Set YOUR_NAME environment variable
+ENV YOUR_NAME QA
+# Expose the correct port
+EXPOSE 5500
+# Create an entrypoint
+ENTRYPOINT ["python","app.py"]
